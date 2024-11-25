@@ -1,3 +1,5 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3179381047.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2323383766.
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -7,7 +9,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String appTitle = 'Flutter layout demo';
+    //const String appTitle = 'Flutter layout demo';
+    const String appTitle = 'レイアウト配置のサンプルアプリ';
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
@@ -17,11 +20,22 @@ class MyApp extends StatelessWidget {
         body: const SingleChildScrollView(
           child: Column(
             children: [
+              ImageSection(
+                image: 'images/lake.jpg',
+              ),
               TitleSection(
                 name: 'オーエシネン湖キャンプ場',
                 location: 'カンダーシュテーク、スイス',
               ),
               ButtonSection(),
+              TextSection(
+                description:
+                    'オーエシネン湖は、ベルナーオーバーラントのブルーエンリスアルプ山麓にあります。'
+                    '海抜1,578メートルに位置し、大きな高山湖のひとつです。'
+                    'カンダーシュテークからゴンドラに乗り、牧草地や松林を30分ほど歩くと湖に到着します。'
+                    '夏には水温が20℃まで上がります。'
+                    'ここでは、ボート遊びやサマートボガンを楽しむことができます。',
+              ),
             ],
           ),
         ),
@@ -148,4 +162,39 @@ class ButtonWithText extends StatelessWidget {
   }
 }
 
+class TextSection extends StatelessWidget {
+  const TextSection({
+    super.key,
+    required this.description,
+  });
+
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Text(
+        description,
+        softWrap: true,
+      ),
+    );
+  }
+}
+
+class ImageSection extends StatelessWidget {
+  const ImageSection({super.key, required this.image});
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      image,
+      width: 600,
+      height: 240,
+      fit: BoxFit.cover,
+    );
+  }
+}
 
